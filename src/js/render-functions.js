@@ -6,12 +6,12 @@ import "simplelightbox/dist/simple-lightbox.min.css";
 
 let lightbox = new SimpleLightbox('.gallery a');
 
-export function renderImages(images) {
+export function renderImages(images, clear = true) {
     const gallery = document.querySelector('.gallery');
     gallery.innerHTML = '';
 
-    if (images.length === 0) {
-        return; 
+    if (clear) {
+        gallery.innerHTML = '';
     }
 
     const markup = images.map(image => {
@@ -69,4 +69,12 @@ export function showLoadingIndicator() {
 
 export function hideLoadingIndicator() {
     document.querySelector('.loading-indicator').classList.add('hidden');
+}
+
+export function showLoadMoreButton() {
+    document.querySelector('.load-more').classList.remove('hidden');
+}
+
+export function hideLoadMoreButton() {
+    document.querySelector('.load-more').classList.add('hidden');
 }
