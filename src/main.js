@@ -51,18 +51,22 @@ loadMoreButton.addEventListener('click', async () => {
         const { images } = await fetchImages(currentQuery, currentPage);
         hideLoadingIndicator();
 
-        renderImages(images, false);
+        renderImages(images, false); 
 
         const galleryItems = document.querySelectorAll('.gallery-item');
+        const loadedImagesCount = galleryItems.length;
+
         const lastItem = galleryItems[galleryItems.length - 1];
         const cardHeight = lastItem.getBoundingClientRect().height;
 
-        window.scrollBy({
-            top: cardHeight * 2,
-            behavior: 'smooth',
-        });
+        setTimeout(() => {
+            window.scrollBy({
+                top: cardHeight * 2,
+                behavior: 'smooth',
+            });
+        }, 100);
 
-        if (galleryItems.length >= totalHits) {
+        if (loadedImagesCount >= totalHits) {
             hideLoadMoreButton();
             renderError("We're sorry, but you've reached the end of search results.");
         }
@@ -71,4 +75,5 @@ loadMoreButton.addEventListener('click', async () => {
         renderError('An error occurred while fetching more images. Please try again later.');
     }
 });
+
 

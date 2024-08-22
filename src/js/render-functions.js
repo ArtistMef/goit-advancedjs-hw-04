@@ -8,7 +8,6 @@ let lightbox = new SimpleLightbox('.gallery a');
 
 export function renderImages(images, clear = true) {
     const gallery = document.querySelector('.gallery');
-    gallery.innerHTML = '';
 
     if (clear) {
         gallery.innerHTML = '';
